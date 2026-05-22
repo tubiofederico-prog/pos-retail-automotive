@@ -16,7 +16,7 @@ export default function RootLayout({
 }) {
   return (
     <html lang="es">
-      <body className="bg-gray-900 text-gray-100">
+      <body>
         <AuthProvider>
           <div className="flex min-h-screen">
             <Sidebar />

@@ -52,52 +52,72 @@ export default function LoginPage() {
   };
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-gray-900 via-gray-800 to-gray-900 flex items-center justify-center p-4">
+    <div className="min-h-screen flex items-center justify-center p-4" style={{
+      background: 'linear-gradient(135deg, #0f172a 0%, #0a0d1a 50%, #1a0f3a 100%)'
+    }}>
       <div className="w-full max-w-md">
         {/* Header */}
         <div className="text-center mb-8">
-          <div className="flex items-center justify-center gap-2 mb-4">
-            <Zap className="w-10 h-10 text-violet-500" />
-            <h1 className="text-3xl font-bold text-white">PoS Retail</h1>
+          <div className="flex items-center justify-center gap-3 mb-6">
+            <div className="w-12 h-12 rounded-lg flex items-center justify-center" style={{
+              background: 'linear-gradient(135deg, var(--primary) 0%, var(--secondary) 100%)'
+            }}>
+              <Zap size={24} color="white" />
+            </div>
           </div>
-          <p className="text-gray-400">Sistema de Punto de Venta Automotriz</p>
+          <h1 className="text-4xl font-bold mb-2" style={{
+            background: 'linear-gradient(135deg, var(--primary) 0%, var(--secondary) 100%)',
+            WebkitBackgroundClip: 'text',
+            WebkitTextFillColor: 'transparent',
+            backgroundClip: 'text'
+          }}>
+            PoS Retail
+          </h1>
+          <p style={{ color: 'var(--text-secondary)' }}>Plataforma de Gestión Automotriz</p>
         </div>
 
         {/* Card */}
-        <div className="bg-gray-800 rounded-lg shadow-xl border border-gray-700 p-8 space-y-6">
+        <div className="rounded-2xl p-8 space-y-6 backdrop-blur-sm border" style={{
+          background: 'rgba(26, 31, 58, 0.8)',
+          borderColor: 'var(--border-light)',
+          boxShadow: '0 25px 50px -12px rgba(0, 217, 255, 0.1)'
+        }}>
           {/* Email */}
           <div>
-            <label className="block text-sm font-medium text-gray-300 mb-2">
-              Email de Demo
+            <label className="block text-sm font-semibold mb-3" style={{ color: 'var(--text-primary)' }}>
+              Email
             </label>
             <input
               type="email"
               value={email}
               onChange={(e) => setEmail(e.target.value)}
-              className="w-full px-4 py-2 bg-gray-700 border border-gray-600 rounded-lg text-white placeholder-gray-500 focus:outline-none focus:ring-2 focus:ring-violet-500"
               placeholder="demo@posretail.com"
             />
           </div>
 
           {/* Roles */}
           <div>
-            <label className="block text-sm font-medium text-gray-300 mb-3">
-              Selecciona tu rol:
+            <label className="block text-sm font-semibold mb-3" style={{ color: 'var(--text-primary)' }}>
+              Selecciona tu Rol
             </label>
             <div className="grid grid-cols-2 gap-3">
               {roles.map((role) => (
                 <button
                   key={role.value}
                   onClick={() => setSelectedRole(role.value)}
-                  className={`p-4 rounded-lg border-2 transition-all text-left ${
-                    selectedRole === role.value
-                      ? 'border-violet-500 bg-violet-500/10'
-                      : 'border-gray-600 bg-gray-700/50 hover:border-gray-500'
-                  }`}
+                  className="p-4 rounded-lg transition-all text-left text-sm border"
+                  style={selectedRole === role.value ? {
+                    background: `linear-gradient(135deg, rgba(0, 217, 255, 0.2) 0%, rgba(168, 85, 247, 0.2) 100%)`,
+                    borderColor: 'var(--primary)',
+                    color: 'var(--text-primary)'
+                  } : {
+                    background: 'rgba(30, 41, 59, 0.5)',
+                    borderColor: 'var(--border)',
+                    color: 'var(--text-secondary)'
+                  }}
                 >
-                  <div className="text-2xl mb-2">{role.emoji}</div>
-                  <div className="text-sm font-medium text-white">{role.label}</div>
-                  <div className="text-xs text-gray-400 mt-1">{role.description}</div>
+                  <div className="font-semibold">{role.label}</div>
+                  <div className="text-xs mt-1" style={{ opacity: 0.7 }}>{role.description}</div>
                 </button>
               ))}
             </div>
@@ -107,22 +127,30 @@ export default function LoginPage() {
           <button
             onClick={handleLogin}
             disabled={isLoading}
-            className="w-full bg-violet-600 hover:bg-violet-700 disabled:bg-gray-600 text-white font-semibold py-3 rounded-lg transition-colors flex items-center justify-center gap-2"
+            className="w-full font-semibold py-3 rounded-lg transition-all flex items-center justify-center gap-2 text-white hover:shadow-lg hover:shadow-cyan-500/50 disabled:opacity-50"
+            style={{
+              background: 'linear-gradient(135deg, var(--primary) 0%, var(--secondary) 100%)',
+              border: '1px solid var(--primary)'
+            }}
           >
             <LogIn size={20} />
-            {isLoading ? 'Iniciando...' : 'Ingresar al Sistema'}
+            {isLoading ? 'Iniciando...' : 'Ingresar'}
           </button>
 
           {/* Demo Info */}
-          <div className="bg-blue-500/10 border border-blue-500/30 rounded-lg p-4 text-sm text-blue-200">
-            <p className="font-semibold mb-1">💡 Demo</p>
-            <p>Prueba diferentes roles para ver los módulos disponibles para cada usuario.</p>
+          <div className="rounded-lg p-4 text-sm border" style={{
+            background: 'rgba(0, 217, 255, 0.05)',
+            borderColor: 'rgba(0, 217, 255, 0.2)',
+            color: 'var(--primary)'
+          }}>
+            <p className="font-semibold mb-1">Información</p>
+            <p>Prueba cada rol para explorar los módulos disponibles</p>
           </div>
         </div>
 
         {/* Footer */}
-        <div className="text-center mt-8 text-gray-500 text-sm">
-          <p>© 2026 PoS Retail. Solución de Punto de Venta Automotriz</p>
+        <div className="text-center mt-8 text-sm" style={{ color: 'var(--text-secondary)' }}>
+          <p>© 2026 PoS Retail</p>
         </div>
       </div>
     </div>
